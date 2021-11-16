@@ -10,7 +10,7 @@
         Title="Comida" Height="700" Width="950">
     <Border BorderThickness="1" BorderBrush="Black" Margin="10">
         <DockPanel>
-            
+            <!-- meter cosas aqui-->
         </DockPanel>
     </Border>
 </Window>
