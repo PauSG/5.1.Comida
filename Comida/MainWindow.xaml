@@ -8,9 +8,50 @@
         Background="LightSkyBlue"
         Icon="assets/Icono.ico"
         Title="Comida" Height="700" Width="950">
-    <Border BorderThickness="1" BorderBrush="Black" Margin="10">
+    <Border BorderThickness="1" BorderBrush="Black" Background="White" Margin="10">
         <DockPanel>
-            <!-- meter cosas aqui-->
+            <StackPanel DockPanel.Dock="Right" Background="LightGray" Width="300" Margin="10" HorizontalAlignment="Right">
+                <TextBlock Margin="5,5,0,0">Nombre del plato</TextBlock>
+                <TextBox Margin="5,5,0,0"></TextBox>
+                <TextBlock Margin="5,10,0,0">Foto del plato</TextBlock>
+                <TextBox Margin="5,5,0,0"></TextBox>
+                <TextBlock Margin="5,10,0,0">Tipo de comida</TextBlock>
+                <ComboBox ItemsSource="{Binding Path=TipoComida}" Margin="5,5,0,0"></ComboBox>
+                <GroupBox Header="Alérgenos" Margin="10" BorderBrush="Black" >
+                    <UniformGrid>
+                        <CheckBox Margin="5">Leche</CheckBox>
+                        <CheckBox Margin="5">Soja</CheckBox>
+                        <CheckBox Margin="5">Gluten</CheckBox>
+                        <CheckBox Margin="5">Sulfitos</CheckBox>
+                    </UniformGrid>
+                </GroupBox>
+                <Button Margin="10,0,0,0" Padding="10,2" HorizontalAlignment="Left">Limpiar selección</Button>
+            </StackPanel>
+            <Border BorderThickness="1" BorderBrush="Gray" Margin="10">
+                <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=ListaPlatos}" SelectedItem="{Binding Path=PlatoActual}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Path=Nombre}"></TextBlock>
+                                <Image Source="{Binding Path=Imagen}" Width="150"></Image>
+                                <DockPanel LastChildFill="False">
+                                    <TextBlock DockPanel.Dock="Left">banderita</TextBlock>
+                                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                                        <TextBlock>dsad</TextBlock>
+                                        <TextBlock>sada</TextBlock>
+                                        <TextBlock>adad</TextBlock>
+                                    </StackPanel>
+                                </DockPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
         </DockPanel>
     </Border>
 </Window>
