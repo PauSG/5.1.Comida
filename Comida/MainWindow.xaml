@@ -36,18 +36,29 @@
                     </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding Path=Nombre}"></TextBlock>
-                                <Image Source="{Binding Path=Imagen}" Width="150"></Image>
-                                <DockPanel LastChildFill="False">
-                                    <TextBlock DockPanel.Dock="Left">banderita</TextBlock>
-                                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                                        <TextBlock>dsad</TextBlock>
-                                        <TextBlock>sada</TextBlock>
-                                        <TextBlock>adad</TextBlock>
-                                    </StackPanel>
-                                </DockPanel>
-                            </StackPanel>
+                            <Border  Margin="20" BorderBrush="Black" BorderThickness="1" Background="LightBlue" Width="200" Height="250">
+                                <Border.Effect>
+                                    <DropShadowEffect></DropShadowEffect>
+                                </Border.Effect>
+                                <StackPanel>
+                                    <Viewbox Height="50" Margin="10,0,10,0">
+                                    <TextBlock Text="{Binding Path=Nombre}" TextAlignment="Center"></TextBlock>
+                                    </Viewbox>
+                                    <Image Source="{Binding Path=Imagen}" Margin="10" Width="160" Height="150" Stretch="UniformToFill"></Image>
+                                    <DockPanel LastChildFill="False" VerticalAlignment="Bottom">
+                                        <Image DockPanel.Dock="Left" Margin="10,0,0,0">
+                                            <!--Meter aqui un datatrigger de esos para que ponga la bandera segun el tipo de comida -->
+                                        </Image>
+                                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="0,0,10,0">
+                                            <!--ver porque no aparecen las imagenes-->
+                                            <Image Source="assets/gluten.png"></Image>
+                                            <Image Source="assets/milk.png"></Image>
+                                            <Image Source="assets/sulfide.png"></Image>
+                                            <Image Source="assets/soybean.png"></Image>
+                                        </StackPanel>
+                                    </DockPanel>
+                                </StackPanel>
+                             </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>

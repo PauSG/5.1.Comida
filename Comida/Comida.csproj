@@ -110,5 +110,15 @@
     <Resource Include="assets\hotdog.jpg" />
     <Resource Include="assets\tacos.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\china.png" />
+    <Resource Include="assets\fruit_food_apple.ico" />
+    <Resource Include="assets\gluten.png" />
+    <Resource Include="assets\mexico.png" />
+    <Resource Include="assets\milk.png" />
+    <Resource Include="assets\soybean.png" />
+    <Resource Include="assets\sulfide.png" />
+    <Resource Include="assets\united_states.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
