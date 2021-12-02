@@ -26,12 +26,26 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="TextBlock" x:Key="tipoLetra">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="China">
+                    <Setter Property="FontFamily" Value="chinese wok food st"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="Mexicana">
+                    <Setter Property="FontFamily" Value="taco salad font"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="Americana">
+                    <Setter Property="FontFamily" Value="slim summer"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="Image" x:Key="LecheImage">
             <Setter Property="Height" Value="25"/>
             <Setter Property="Visibility" Value="Collapsed"/>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding ElementName=LecheCheckbox, Path=IsChecked}" Value="True">
+                <DataTrigger Binding="{Binding Path=Leche}" Value="True">
                     <Setter Property="Visibility" Value="Visible"/>
+                    <Setter Property="ToolTip" Value="Leche"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -39,8 +53,9 @@
             <Setter Property="Height" Value="25"/>
             <Setter Property="Visibility" Value="Collapsed"/>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding ElementName=SojaCheckbox, Path=IsChecked}" Value="True">
+                <DataTrigger Binding="{Binding Path=Soja}" Value="True">
                     <Setter Property="Visibility" Value="Visible"/>
+                    <Setter Property="ToolTip" Value="Soja"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -48,8 +63,9 @@
             <Setter Property="Height" Value="25"/>
             <Setter Property="Visibility" Value="Collapsed"/>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding ElementName=GlutenCheckbox, Path=IsChecked}" Value="True">
+                <DataTrigger Binding="{Binding Path=Gluten}" Value="True">
                     <Setter Property="Visibility" Value="Visible"/>
+                    <Setter Property="ToolTip" Value="GLuten"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -57,8 +73,19 @@
             <Setter Property="Height" Value="25"/>
             <Setter Property="Visibility" Value="Collapsed"/>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding ElementName=SulfitosCheckbox, Path=IsChecked}" Value="True">
+                <DataTrigger Binding="{Binding Path=Sulfitos}" Value="True">
                     <Setter Property="Visibility" Value="Visible"/>
+                    <Setter Property="ToolTip" Value="Sulfitos"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button" x:Key="ActivarBoton">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="10,2"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=PlatoActual}" Value="null">
+                    <Setter Property="IsEnabled" Value="False"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -81,7 +108,7 @@
                         <CheckBox Margin="5" IsChecked="{Binding Path=PlatoActual.Sulfitos}" x:Name="SulfitosCheckbox">Sulfitos</CheckBox>
                     </UniformGrid>
                 </GroupBox>
-                <Button Margin="10,0,0,0" Padding="10,2" HorizontalAlignment="Left">Limpiar selección</Button>
+                <Button Style="{StaticResource ActivarBoton}" Click="LimpiarSeleccion_ButtonClick" >Limpiar selección</Button>
             </StackPanel>
             <Border BorderThickness="1" BorderBrush="Gray" Margin="10">
                 <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=ListaPlatos}" SelectedItem="{Binding Path=PlatoActual}">
@@ -98,14 +125,14 @@
                                 </Border.Effect>
                                 <StackPanel>
                                     <Viewbox Height="50" Margin="10,0,10,0">
-                                    <TextBlock Text="{Binding Path=Nombre}" TextAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Binding Path=Nombre}" Style="{StaticResource tipoLetra}" TextAlignment="Center"></TextBlock>
                                     </Viewbox>
-                                    <Image Source="{Binding Path=Imagen}" Margin="10" Width="160" Height="150" Stretch="UniformToFill"></Image>
+                                    <Image Source="{Binding Path=Imagen}" Margin="10,10,10,0" Width="160" Height="150" Stretch="UniformToFill"></Image>
                                     <DockPanel LastChildFill="False" VerticalAlignment="Bottom">
                                         <Image DockPanel.Dock="Left" Margin="10,0,0,0" Style="{StaticResource banderita}">
                                             <!--Meter aqui un datatrigger de esos para que ponga la bandera segun el tipo de comida -->
                                         </Image>
-                                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="0,0,10,0">
+                                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="0,8,10,10">
                                             <Image Source="assets/gluten.png" Style="{StaticResource GlutenImage}"></Image>
                                             <Image Source="assets/milk.png" Style="{StaticResource LecheImage}"></Image>
                                             <Image Source="assets/sulfide.png" Style="{StaticResource SulfitosImage}"></Image>

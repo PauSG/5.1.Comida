@@ -46,12 +46,17 @@ namespace Comida
             }
         }
 
+        public void LimpiarSeleccion()
+        {
+            PlatoActual = null;
+        }
+
 
         public MainWindowVM()
         {
             TipoComida = new List<string> { "China", "Americana", "Mexicana" };
             listaPlatos = Plato.GetSamples("assets");
-            PlatoActual = ListaPlatos[0];
+            PlatoActual = null;
         }
 
 

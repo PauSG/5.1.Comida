@@ -26,5 +26,10 @@ namespace Comida
             InitializeComponent();
             this.DataContext = vm;
         }
+
+        private void LimpiarSeleccion_ButtonClick(object sender, RoutedEventArgs e)
+        {
+            vm.LimpiarSeleccion();
+        }
     }
 }
