@@ -8,21 +8,77 @@
         Background="LightSkyBlue"
         Icon="assets/Icono.ico"
         Title="Comida" Height="700" Width="950">
+    <Window.Resources>
+        <Style TargetType="Image" x:Key="banderita">
+            <Setter Property="Height" Value="30"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="China">
+                    <Setter Property="Source" Value="assets/china.png"/>
+                    <Setter Property="ToolTip" Value="Comida China"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="Mexicana">
+                    <Setter Property="Source" Value="assets/mexico.png"/>
+                    <Setter Property="ToolTip" Value="Comida Mexicana"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="Americana">
+                    <Setter Property="Source" Value="assets/united_states.png"/>
+                    <Setter Property="ToolTip" Value="Comida Americana"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Image" x:Key="LecheImage">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=LecheCheckbox, Path=IsChecked}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Image" x:Key="SojaImage">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=SojaCheckbox, Path=IsChecked}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Image" x:Key="GlutenImage">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=GlutenCheckbox, Path=IsChecked}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Image" x:Key="SulfitosImage">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=SulfitosCheckbox, Path=IsChecked}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <!-- separacion -->
     <Border BorderThickness="1" BorderBrush="Black" Background="White" Margin="10">
         <DockPanel>
             <StackPanel DockPanel.Dock="Right" Background="LightGray" Width="300" Margin="10" HorizontalAlignment="Right">
                 <TextBlock Margin="5,5,0,0">Nombre del plato</TextBlock>
-                <TextBox Margin="5,5,0,0"></TextBox>
+                <TextBox Margin="5,5,0,0" Text="{Binding Path=PlatoActual.Nombre}"></TextBox>
                 <TextBlock Margin="5,10,0,0">Foto del plato</TextBlock>
-                <TextBox Margin="5,5,0,0"></TextBox>
+                <TextBox Margin="5,5,0,0" Text="{Binding Path=PlatoActual.Imagen}"></TextBox>
                 <TextBlock Margin="5,10,0,0">Tipo de comida</TextBlock>
-                <ComboBox ItemsSource="{Binding Path=TipoComida}" Margin="5,5,0,0"></ComboBox>
+                <ComboBox ItemsSource="{Binding Path=TipoComida}" SelectedItem="{Binding Path=PlatoActual.Tipo}" Margin="5,5,0,0"></ComboBox>
                 <GroupBox Header="Alérgenos" Margin="10" BorderBrush="Black" >
                     <UniformGrid>
-                        <CheckBox Margin="5">Leche</CheckBox>
-                        <CheckBox Margin="5">Soja</CheckBox>
-                        <CheckBox Margin="5">Gluten</CheckBox>
-                        <CheckBox Margin="5">Sulfitos</CheckBox>
+                        <CheckBox IsChecked="{Binding Path=PlatoActual.Leche}" Margin="5" x:Name="LecheCheckbox" >Leche</CheckBox>
+                        <CheckBox Margin="5" IsChecked="{Binding Path=PlatoActual.Soja}" x:Name="SojaCheckbox">Soja</CheckBox>
+                        <CheckBox Margin="5" IsChecked="{Binding Path=PlatoActual.Gluten}" x:Name="GlutenCheckbox">Gluten</CheckBox>
+                        <CheckBox Margin="5" IsChecked="{Binding Path=PlatoActual.Sulfitos}" x:Name="SulfitosCheckbox">Sulfitos</CheckBox>
                     </UniformGrid>
                 </GroupBox>
                 <Button Margin="10,0,0,0" Padding="10,2" HorizontalAlignment="Left">Limpiar selección</Button>
@@ -46,15 +102,14 @@
                                     </Viewbox>
                                     <Image Source="{Binding Path=Imagen}" Margin="10" Width="160" Height="150" Stretch="UniformToFill"></Image>
                                     <DockPanel LastChildFill="False" VerticalAlignment="Bottom">
-                                        <Image DockPanel.Dock="Left" Margin="10,0,0,0">
+                                        <Image DockPanel.Dock="Left" Margin="10,0,0,0" Style="{StaticResource banderita}">
                                             <!--Meter aqui un datatrigger de esos para que ponga la bandera segun el tipo de comida -->
                                         </Image>
                                         <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="0,0,10,0">
-                                            <!--ver porque no aparecen las imagenes-->
-                                            <Image Source="assets/gluten.png"></Image>
-                                            <Image Source="assets/milk.png"></Image>
-                                            <Image Source="assets/sulfide.png"></Image>
-                                            <Image Source="assets/soybean.png"></Image>
+                                            <Image Source="assets/gluten.png" Style="{StaticResource GlutenImage}"></Image>
+                                            <Image Source="assets/milk.png" Style="{StaticResource LecheImage}"></Image>
+                                            <Image Source="assets/sulfide.png" Style="{StaticResource SulfitosImage}"></Image>
+                                            <Image Source="assets/soybean.png" Style="{StaticResource SojaImage}"></Image>
                                         </StackPanel>
                                     </DockPanel>
                                 </StackPanel>
