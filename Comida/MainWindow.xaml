@@ -99,20 +99,20 @@
         <DockPanel>
             <StackPanel Style="{StaticResource Formulario}" DockPanel.Dock="Right" Background="LightGray" Width="300" Margin="10" HorizontalAlignment="Right">
                 <TextBlock Margin="5,5,0,0">Nombre del plato</TextBlock>
-                <TextBox Margin="5,5,0,0" Text="{Binding Path=PlatoActual.Nombre}"></TextBox>
+                <TextBox Margin="5,5,0,0" Text="{Binding Path=PlatoActual.Nombre}" Template="{DynamicResource TextBoxControlTemplate}"></TextBox>
                 <TextBlock Margin="5,10,0,0">Foto del plato</TextBlock>
-                <TextBox Margin="5,5,0,0" Text="{Binding Path=PlatoActual.Imagen}"></TextBox>
+                <TextBox Margin="5,5,0,0" Text="{Binding Path=PlatoActual.Imagen}" Template="{DynamicResource TextBoxControlTemplate}"></TextBox>
                 <TextBlock Margin="5,10,0,0">Tipo de comida</TextBlock>
                 <ComboBox ItemsSource="{Binding Path=TipoComida}" SelectedItem="{Binding Path=PlatoActual.Tipo}" Margin="5,5,0,0"></ComboBox>
-                <GroupBox Header="Alérgenos" Margin="10" BorderBrush="Black" >
+                <GroupBox Header="Alérgenos" Margin="10" BorderBrush="Black" Template="{DynamicResource GroupBoxControlTemplate}" >
                     <UniformGrid>
-                        <CheckBox IsChecked="{Binding Path=PlatoActual.Leche}" Margin="5" x:Name="LecheCheckbox" >Leche</CheckBox>
-                        <CheckBox Margin="5" IsChecked="{Binding Path=PlatoActual.Soja}" x:Name="SojaCheckbox">Soja</CheckBox>
-                        <CheckBox Margin="5" IsChecked="{Binding Path=PlatoActual.Gluten}" x:Name="GlutenCheckbox">Gluten</CheckBox>
-                        <CheckBox Margin="5" IsChecked="{Binding Path=PlatoActual.Sulfitos}" x:Name="SulfitosCheckbox">Sulfitos</CheckBox>
+                        <CheckBox IsChecked="{Binding Path=PlatoActual.Leche}" Margin="5" x:Name="LecheCheckbox" Template="{DynamicResource CheckBoxControlTemplate}" >Leche</CheckBox>
+                        <CheckBox Margin="5" IsChecked="{Binding Path=PlatoActual.Soja}" x:Name="SojaCheckbox" Template="{DynamicResource CheckBoxControlTemplate}">Soja</CheckBox>
+                        <CheckBox Margin="5" IsChecked="{Binding Path=PlatoActual.Gluten}" x:Name="GlutenCheckbox" Template="{DynamicResource CheckBoxControlTemplate}">Gluten</CheckBox>
+                        <CheckBox Margin="5" IsChecked="{Binding Path=PlatoActual.Sulfitos}" x:Name="SulfitosCheckbox" Template="{DynamicResource CheckBoxControlTemplate}">Sulfitos</CheckBox>
                     </UniformGrid>
                 </GroupBox>
-                <Button Style="{StaticResource ActivarBoton}" Click="LimpiarSeleccion_ButtonClick" >Limpiar selección</Button>
+                <Button Style="{StaticResource ActivarBoton}" Click="LimpiarSeleccion_ButtonClick" Template="{DynamicResource ButtonControlTemplate}" >Limpiar selección</Button>
             </StackPanel>
             <Border BorderThickness="1" BorderBrush="Gray" Margin="10">
                 <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=ListaPlatos}" SelectedItem="{Binding Path=PlatoActual}">
@@ -134,7 +134,6 @@
                                     <Image Source="{Binding Path=Imagen}" Margin="10,10,10,0" Width="160" Height="150" Stretch="UniformToFill"></Image>
                                     <DockPanel LastChildFill="False" VerticalAlignment="Bottom">
                                         <Image DockPanel.Dock="Left" Margin="10,0,0,0" Style="{StaticResource banderita}">
-                                            <!--Meter aqui un datatrigger de esos para que ponga la bandera segun el tipo de comida -->
                                         </Image>
                                         <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="0,8,10,10">
                                             <Image Source="assets/gluten.png" Style="{StaticResource GlutenImage}"></Image>
